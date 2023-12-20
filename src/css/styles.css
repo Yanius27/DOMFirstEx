@@ -1,0 +1,47 @@
+body {
+  text-align: center;
+}
+
+.container {
+  padding: 10px;
+  background-color: rgb(209, 201, 201);
+  width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.cell {
+  border: 2px solid black;
+  border-radius: 10%;
+  width: 23%;
+  height: 120px;
+  background-color: rgb(55, 35, 35);
+}
+
+.cell_withEnemy {
+  background-image: url('../img/goblin.png');
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.clickedEnemy {
+  background-color: rgb(81, 4, 4);
+  background-size: 70%;
+  opacity: 0.9;
+  border-radius: 50%;
+}
+
+.score {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.score_span {
+  color: red;
+  font-size: 28px;
+}

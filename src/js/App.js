@@ -1,25 +1,6 @@
-/******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-var __webpack_exports__ = {};
+import Board from "./Board";
 
-;// CONCATENATED MODULE: ./src/js/Board.js
-class Board {
-  constructor(size) {
-    this.size = size ** 2;
-    this.cells = [];
-  }
-  generateBoard() {
-    for (let i = 0; i < this.size; i++) {
-      const cell = document.createElement("div");
-      cell.classList.add("cell");
-      cell.id = i;
-      this.cells.push(cell);
-    }
-  }
-}
-;// CONCATENATED MODULE: ./src/js/App.js
-
-class App {
+export default class App {
   constructor() {
     this.position = undefined;
     this.container = undefined;
@@ -29,11 +10,13 @@ class App {
     this.score = undefined;
     this.p = undefined;
   }
+
   init() {
     this.drawBoard();
     this.setListeners();
     this.interval();
   }
+
   drawBoard() {
     this.container = document.createElement("div");
     this.container.classList.add("container");
@@ -44,12 +27,13 @@ class App {
     this.score.textContent = 0;
     this.p.textContent = `Счёт: `;
     this.p.appendChild(this.score);
-    this.board.cells.forEach(el => {
+    this.board.cells.forEach((el) => {
       this.container.appendChild(el);
     });
     document.documentElement.children[1].appendChild(this.p);
     document.documentElement.children[1].appendChild(this.container);
   }
+
   drawEnemy() {
     if (this.position || this.position === 0) {
       this.board.cells[this.position].classList.remove("cell_withEnemy");
@@ -58,6 +42,7 @@ class App {
     const randomCell = document.getElementById(this.position);
     randomCell.classList.add("cell_withEnemy");
   }
+
   randomPosition() {
     const newPosition = Math.floor(Math.random() * this.board.size);
     if (newPosition !== this.position) {
@@ -66,8 +51,9 @@ class App {
       this.randomPosition();
     }
   }
+
   setListeners() {
-    this.board.cells.forEach(el => {
+    this.board.cells.forEach((el) => {
       el.addEventListener("click", () => {
         if (el.id == this.position) {
           this.score.textContent = +this.score.textContent + 1;
@@ -82,16 +68,10 @@ class App {
       });
     });
   }
+
   interval() {
     this.intervalId = setInterval(() => {
       this.drawEnemy();
     }, 800);
   }
 }
-;// CONCATENATED MODULE: ./src/index.js
-
-
-const app = new App();
-app.init();
-/******/ })()
-;
