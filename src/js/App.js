@@ -36,11 +36,11 @@ export default class App {
 
   drawEnemy() {
     if (this.position || this.position === 0) {
-      this.board.cells[this.position].classList.remove('cell_withEnemy')
+      this.board.cells[this.position].classList.remove("cell_withEnemy");
     }
     this.randomPosition();
     const randomCell = document.getElementById(this.position);
-    randomCell.classList.add('cell_withEnemy');
+    randomCell.classList.add("cell_withEnemy");
   }
 
   randomPosition() {
@@ -57,11 +57,11 @@ export default class App {
       el.addEventListener("click", () => {
         if (el.id == this.position) {
           this.score.textContent = +this.score.textContent + 1;
-          el.classList.add('clickedEnemy');
+          el.classList.add("clickedEnemy");
           clearInterval(this.intervalId);
           setTimeout(() => {
-            el.classList.remove('clickedEnemy');
-            el.classList.remove('cell_withEnemy');
+            el.classList.remove("clickedEnemy");
+            el.classList.remove("cell_withEnemy");
             this.interval();
           }, 300);
         }
