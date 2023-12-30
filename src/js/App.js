@@ -2,36 +2,14 @@ import Board from "./Board";
 
 export default class App {
   constructor() {
-    this.position = undefined;
-    this.container = undefined;
     this.board = new Board(4);
-    this.board.generateBoard();
-    this.intervalId = undefined;
-    this.score = undefined;
-    this.p = undefined;
   }
 
   init() {
-    this.drawBoard();
+    this.board.generateBoard();
+    this.board.drawBoard();
     this.setListeners();
     this.interval();
-  }
-
-  drawBoard() {
-    this.container = document.createElement("div");
-    this.container.classList.add("container");
-    this.p = document.createElement("p");
-    this.p.classList.add("score");
-    this.score = document.createElement("span");
-    this.score.classList.add("score_span");
-    this.score.textContent = 0;
-    this.p.textContent = `Счёт: `;
-    this.p.appendChild(this.score);
-    this.board.cells.forEach((el) => {
-      this.container.appendChild(el);
-    });
-    document.documentElement.children[1].appendChild(this.p);
-    document.documentElement.children[1].appendChild(this.container);
   }
 
   drawEnemy() {
@@ -53,20 +31,18 @@ export default class App {
   }
 
   setListeners() {
-    this.board.cells.forEach((el) => {
-      el.addEventListener("click", () => {
-        if (el.id == this.position) {
-          this.score.textContent = +this.score.textContent + 1;
-          el.classList.add("clickedEnemy");
-          clearInterval(this.intervalId);
-          setTimeout(() => {
-            el.classList.remove("clickedEnemy");
-            el.classList.remove("cell_withEnemy");
-            this.interval();
-          }, 300);
+    this.board.container.addEventListener("click", (event) => {
+      if (event.target.id == this.position) {
+        this.board.scoreP.children[0].textContent = +this.board.scoreP.children[0].textContent + 1;
+        event.target.classList.add("clickedEnemy");
+        clearInterval(this.intervalId);
+        setTimeout(() => {
+          event.target.classList.remove("clickedEnemy");
+          event.target.classList.remove("cell_withEnemy");
+          this.interval();
+        }, 300);
         }
       });
-    });
   }
 
   interval() {
