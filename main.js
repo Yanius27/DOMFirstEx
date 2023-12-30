@@ -2,7 +2,7 @@
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 
-;// CONCATENATED MODULE: ./src/js/Board.js
+// CONCATENATED MODULE: ./src/js/Board.js
 class Board {
   constructor(size) {
     this.size = size ** 2;
@@ -17,7 +17,7 @@ class Board {
     }
   }
 }
-;// CONCATENATED MODULE: ./src/js/App.js
+// CONCATENATED MODULE: ./src/js/App.js
 
 class App {
   constructor() {
@@ -88,7 +88,7 @@ class App {
     }, 800);
   }
 }
-;// CONCATENATED MODULE: ./src/index.js
+// CONCATENATED MODULE: ./src/index.js
 
 
 const app = new App();

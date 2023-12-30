@@ -1,8 +1,10 @@
 import Board from "./Board";
+import Goblin from './Goblin';
 
 export default class App {
   constructor() {
     this.board = new Board(4);
+    this.goblin = new Goblin();
   }
 
   init() {
@@ -13,12 +15,9 @@ export default class App {
   }
 
   drawEnemy() {
-    if (this.position || this.position === 0) {
-      this.board.cells[this.position].classList.remove("cell_withEnemy");
-    }
     this.randomPosition();
     const randomCell = document.getElementById(this.position);
-    randomCell.classList.add("cell_withEnemy");
+    randomCell.append(this.goblin.element);
   }
 
   randomPosition() {
@@ -32,13 +31,13 @@ export default class App {
 
   setListeners() {
     this.board.container.addEventListener("click", (event) => {
-      if (event.target.id == this.position) {
+      if (event.target.classList.contains('goblin')) {
         this.board.scoreP.children[0].textContent = +this.board.scoreP.children[0].textContent + 1;
         event.target.classList.add("clickedEnemy");
         clearInterval(this.intervalId);
         setTimeout(() => {
           event.target.classList.remove("clickedEnemy");
-          event.target.classList.remove("cell_withEnemy");
+          event.target.remove();
           this.interval();
         }, 300);
         }
